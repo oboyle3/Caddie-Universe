@@ -5,4 +5,4 @@ def landing_page(request):
     return render(request, "core/landing.html")
 
 def personal_profile_page(request):
-    return render (request, "core/personal.html")
+    return render (request, "core/person.html")
