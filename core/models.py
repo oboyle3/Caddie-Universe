@@ -16,13 +16,13 @@ class EndUsers(models.Model):
     
 
     
-# class TeeTimes(models.Model):
-#     tee_time = models.CharField(max_length=100)
-#     user = EndUsers.objects.create(username="john_doe", email="john@example.com")
-#     caddie = ListOfCaddies.objects.create(name="Caddie Mike")
-#     def __str__(self):
-#         return f"TeeTime: {self.tee_time} - User: {self.user.username}"
+class TeeTime(models.Model):
+    time = models.CharField(max_length=100)
+    user = models.ForeignKey(EndUsers, on_delete=models.CASCADE, related_name="tee_times")
+    caddie = models.ForeignKey(ListOfCaddies, on_delete=models.SET_NULL, null=True, blank=True, related_name="assigned_tee_times")
 
+    def __str__(self):
+        return f"{self.time} - {self.user.username} - Caddie: {self.caddie.name if self.caddie else 'None'}"
 
 
   
