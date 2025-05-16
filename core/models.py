@@ -36,5 +36,19 @@ class Field(models.Model):
     def __str__(self):
         return self.name  # return a string directly
 
+class Assignment(models.Model):
+    #links one caddie to one feild
+    caddie = models.OneToOneField(
+        Caddie, on_delete=models.CASCADE,
+    )
+    field = models.OneToOneField(
+        Field,
+        on_delete=models.CASCADE,
+    )
+    #save the timestamp
+    assigned_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        # For admin panel or debugging: "John Doe ➝ Augusta National"
+        return f"{self.caddie.name} ➝ {self.field.name}"
   

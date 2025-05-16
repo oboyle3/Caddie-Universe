@@ -64,6 +64,24 @@
                 {% endfor %}
             </ul>
         </div>
+
+        
+
+
+    </div>
+    <!-- assignt Widget -->
+    <div class="box">
+        <h1>Assigned Caddies to Fields</h1>
+        <ul>
+            {% for assignment in assignments %}
+                <li>
+                    {{ assignment.caddie.name }} ➝ {{ assignment.field.name }}
+                    (assigned on {{ assignment.assigned_at|date:"Y-m-d" }})
+                </li>
+            {% empty %}
+                <li class="empty">No assignments yet.</li>
+            {% endfor %}
+        </ul>
     </div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .models import ListOfCaddies, Caddie, Field
+from .models import ListOfCaddies, Caddie, Field,Assignment
 # Create your views here.
 def landing_page(request):
     return render(request, "core/landing.html")
@@ -8,6 +8,7 @@ def personal_profile(request):
     #get the caddies and failds from the database
     caddies = Caddie.objects.all()
     fields = Field.objects.all()
+    assignments = Assignment.objects.all()
     #check if the form was submitted (posst request)
     if request.method == 'POST':
         #get the name value from the submitted form
@@ -27,5 +28,6 @@ def personal_profile(request):
            
     return render(request, 'core/personal_user_page.html', {
         'caddies': caddies,
-        'fields': fields
+        'fields': fields,
+        'assignments': assignments,
     })
