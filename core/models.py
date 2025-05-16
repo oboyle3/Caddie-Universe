@@ -23,6 +23,18 @@ class TeeTime(models.Model):
 
     def __str__(self):
         return f"{self.time} - {self.user.username} - Caddie: {self.caddie.name if self.caddie else 'None'}"
+    
+
+
+class Caddie(models.Model):
+    name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name  # return a string directly
+    
+class Field(models.Model):
+    name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name  # return a string directly
 
 
   
