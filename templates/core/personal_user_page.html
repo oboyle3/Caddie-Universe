@@ -10,6 +10,7 @@
         .wrapper {
             display: flex;
             gap: 40px;
+            margin-bottom: 40px;
         }
         .box {
             width: 45%;
@@ -18,6 +19,14 @@
         }
         .box h2 {
             margin-top: 0;
+        }
+        .assignments {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .empty {
+            color: gray;
+            font-style: italic;
         }
     </style>
 </head>
@@ -28,12 +37,10 @@
         <!-- Caddies Widget -->
         <div class="box">
             <h2>Caddies</h2>
-            <!--Form to add caddie-->
+            <!-- Form to add caddie -->
             <form method="POST">
-                {% csrf_token %}  <!-- Django security token -->
-                <!--Input feild for caddie name-->
+                {% csrf_token %}
                 <input type="text" name="caddiename" placeholder="Enter caddie name" required>
-                <!--submit button-->
                 <button type="submit">Add a caddie</button>
             </form>
             <ul>
@@ -48,13 +55,11 @@
         <!-- Fields Widget -->
         <div class="box">
             <h2>Fields</h2>
-            <!--Form to add user to field-->
+            <!-- Form to add field -->
             <form method="POST">
-                {% csrf_token %}  <!-- Django security token -->
-                <!--Input feild for caddie name-->
-                <input type="text" name="fieldname" placeholder="enter name to add to field" required>
-                <!--submit button-->
-                <button type="submit">Add user to field</button>
+                {% csrf_token %}
+                <input type="text" name="fieldname" placeholder="Enter field name" required>
+                <button type="submit">Add field</button>
             </form>
             <ul>
                 {% for field in fields %}
@@ -64,14 +69,11 @@
                 {% endfor %}
             </ul>
         </div>
-
-        
-
-
     </div>
-    <!-- assignt Widget -->
-    <div class="box">
-        <h1>Assigned Caddies to Fields</h1>
+
+    <!-- Assignments Widget -->
+    <div class="assignments">
+        <h2>Assigned Caddies to Fields</h2>
         <ul>
             {% for assignment in assignments %}
                 <li>
