@@ -32,7 +32,7 @@
             <form method="POST">
                 {% csrf_token %}  <!-- Django security token -->
                 <!--Input feild for caddie name-->
-                <input type="text" name="name" placeholder="Enter caddie name" required>
+                <input type="text" name="caddiename" placeholder="Enter caddie name" required>
                 <!--submit button-->
                 <button type="submit">Add a caddie</button>
             </form>
@@ -48,6 +48,14 @@
         <!-- Fields Widget -->
         <div class="box">
             <h2>Fields</h2>
+            <!--Form to add user to field-->
+            <form method="POST">
+                {% csrf_token %}  <!-- Django security token -->
+                <!--Input feild for caddie name-->
+                <input type="text" name="fieldname" placeholder="enter name to add to field" required>
+                <!--submit button-->
+                <button type="submit">Add user to field</button>
+            </form>
             <ul>
                 {% for field in fields %}
                     <li>{{ field.name }}</li>

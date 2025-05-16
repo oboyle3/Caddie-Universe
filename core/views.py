@@ -11,13 +11,20 @@ def personal_profile(request):
     #check if the form was submitted (posst request)
     if request.method == 'POST':
         #get the name value from the submitted form
-        name = request.POST.get('name')
-        if name:
+        caddiename = request.POST.get('caddiename')
+        #get fieldname value from the submtted form
+        fieldname = request.POST.get('fieldname')
+        if caddiename:
             #create and save a new Caddie object
-            Caddie.objects.create(name=name)
+            Caddie.objects.create(name=caddiename)
             # redirect to the same page
             return redirect('personal_profile')
-        
+        if fieldname:
+            #create and same a new Field object
+            Field.objects.create(name=fieldname)
+            # redirect to same page
+            return redirect('personal_profile')
+           
     return render(request, 'core/personal_user_page.html', {
         'caddies': caddies,
         'fields': fields
