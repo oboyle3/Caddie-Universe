@@ -1,31 +1,41 @@
+from django.db import IntegrityError
 from django.shortcuts import redirect, render
-from .models import ListOfCaddies, Caddie, Field,Assignment
-# Create your views here.
+from .models import Caddie, Field, Assignment
+
 def landing_page(request):
     return render(request, "core/landing.html")
 
 def personal_profile(request):
-    #get the caddies and failds from the database
     caddies = Caddie.objects.all()
     fields = Field.objects.all()
     assignments = Assignment.objects.all()
-    #check if the form was submitted (posst request)
+
     if request.method == 'POST':
-        #get the name value from the submitted form
-        caddiename = request.POST.get('caddiename')
-        #get fieldname value from the submtted form
-        fieldname = request.POST.get('fieldname')
-        if caddiename:
-            #create and save a new Caddie object
-            Caddie.objects.create(name=caddiename)
-            # redirect to the same page
+        if 'caddiename' in request.POST:
+            caddiename = request.POST.get('caddiename')
+            if caddiename:
+                Caddie.objects.create(name=caddiename)
             return redirect('personal_profile')
-        if fieldname:
-            #create and same a new Field object
-            Field.objects.create(name=fieldname)
-            # redirect to same page
+
+        elif 'fieldname' in request.POST:
+            fieldname = request.POST.get('fieldname')
+            if fieldname:
+                Field.objects.create(name=fieldname)
             return redirect('personal_profile')
-           
+
+        elif 'assign' in request.POST:
+            caddie_id = request.POST.get('caddie_id')
+            field_id = request.POST.get('field_id')
+            try:
+                caddie = Caddie.objects.get(id=caddie_id)
+                field = Field.objects.get(id=field_id)
+                Assignment.objects.create(caddie=caddie, field=field)
+            except (Caddie.DoesNotExist, Field.DoesNotExist):
+                pass
+            except IntegrityError:
+                pass
+            return redirect('personal_profile')
+
     return render(request, 'core/personal_user_page.html', {
         'caddies': caddies,
         'fields': fields,

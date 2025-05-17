@@ -70,7 +70,26 @@
             </ul>
         </div>
     </div>
-     
+     <!-- Assignment Form -->
+    <form method="POST">
+        {% csrf_token %}
+        <label for="caddie">Caddie:</label>
+        <select name="caddie_id" required>
+            <option value="">Select a caddie</option>
+            {% for caddie in caddies %}
+                <option value="{{ caddie.id }}">{{ caddie.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="field">Field:</label>
+        <select name="field_id" required>
+            <option value="">Select a field</option>
+            {% for field in fields %}
+                <option value="{{ field.id }}">{{ field.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" name="assign">Assign</button>
+    </form>
     <!-- Assignments Widget -->
     <div class="assignments">
         <h2>Assigned Caddies to Fields</h2>
