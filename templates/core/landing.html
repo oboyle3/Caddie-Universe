@@ -8,7 +8,21 @@
 <body class="bg-light text-center">
     <div class="container py-5">
         <h1 class="display-4">Welcome to Caddie Universe</h1>
-        <p class="lead">Your one-stop platform for everything golf-related.</p>
+        
+
+        <div class="wrapper">
+            <!-- players Widget -->
+            <div class="box">
+                <h2>See how golfers are doing</h2>
+                
+                <ul>
+                    {% for x in playerscores %}
+                        <li>{{ x.name }}</li>
+                    {% empty %}
+                        <li>No  available.</li>
+                    {% endfor %}
+                </ul>
+            </div>
         
     </div>
 </body>

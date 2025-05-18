@@ -1,9 +1,12 @@
 from django.db import IntegrityError
 from django.shortcuts import redirect, render
-from .models import Caddie, Field, Assignment
+from .models import Caddie, Field, Assignment, PlayerScore
 
 def landing_page(request):
-    return render(request, "core/landing.html")
+    playerscores = PlayerScore.objects.all()
+    return render(request, "core/landing.html", {
+        'playerscores': playerscores  # This makes it available in the template
+    })
 
 def personal_profile(request):
     caddies = Caddie.objects.all()

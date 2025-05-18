@@ -51,4 +51,24 @@ class Assignment(models.Model):
     def __str__(self):
         # For admin panel or debugging: "John Doe ➝ Augusta National"
         return f"{self.caddie.name} ➝ {self.field.name}"
-  
+    
+
+
+class PlayerScore(models.Model):
+    name = models.CharField(max_length=100)
+    day1_score = models.IntegerField(null=True, blank=True)
+    day2_score = models.IntegerField(null=True, blank=True)
+    day3_score = models.IntegerField(null=True, blank=True)
+    day4_score = models.IntegerField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} - Total: {self.total_score}"
+
+    @property
+    def total_score(self):
+        scores = [self.day1_score, self.day2_score, self.day3_score, self.day4_score]
+        return sum(score for score in scores if score is not None)
+    
+
+    
