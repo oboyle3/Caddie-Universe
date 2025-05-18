@@ -71,4 +71,9 @@ class PlayerScore(models.Model):
         return sum(score for score in scores if score is not None)
     
 
-    
+class Club(models.Model):
+    name = models.CharField(max_length=100)
+    location  = models.CharField(max_length=100)
+    par  = models.CharField(max_length=100)
+    def __str__(self):
+        return f"{self.name} ➝ {self.location}"
