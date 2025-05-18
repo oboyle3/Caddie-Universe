@@ -7,7 +7,10 @@ def landing_page(request):
     return render(request, "core/landing.html", {
         'playerscores': playerscores  # This makes it available in the template
     })
-
+def booking(request):
+    return render(request, "core/booking.html", {
+        
+    })
 def personal_profile(request):
     caddies = Caddie.objects.all()
     fields = Field.objects.all()
