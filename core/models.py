@@ -77,3 +77,17 @@ class Club(models.Model):
     par  = models.CharField(max_length=100)
     def __str__(self):
         return f"{self.name} ➝ {self.location}"
+    
+
+class schedule(models.Model):
+    timeslot = models.CharField(max_length=100)
+    def __str__(self):
+        return self.timeslot
+    
+
+class Booking(models.Model):
+    user = models.ForeignKey(EndUsers, on_delete=models.CASCADE)
+    timeslot = models.ForeignKey(schedule, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.timeslot.timeslot}"

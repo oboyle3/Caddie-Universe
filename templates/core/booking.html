@@ -6,7 +6,7 @@
     <style>
         /* This will set the background color to green */
         body {
-            background-color: green;
+            background-color: rgb(88, 119, 88);
             color: white; /* Adjust text color for contrast */
         }
     </style>
@@ -15,28 +15,21 @@
     <header>
         <h1>GreenFields Golf Club Booking Screen</h1>
         <nav>
-            <a href="#">Home</a> |
+            <a href="{% url 'landing' %}">Home</a> 
         </nav>
     </header>
 
     <main>
-        <section>
-            <h2>Book A tee time</h2>
-            
-        </section>
-
-        <section>
-            <h3>Test Section</h3>
-            <ul>
-                <li>Some content</li>
-               
-            </ul>
-        </section>
-
+        <div class="timeslots">
+            {% for x in schedule %}
+                <a href="{% url 'assign_timeslot' x.id %}">
+                    <button>{{ x.timeslot }}</button>
+                </a>
+            {% empty %}
+                <p>No schedule available.</p>
+            {% endfor %}
+        </div>
     </main>
 
-    <footer>
-        <p>&copy; 2025 GreenFields Golf Club | Standard Irishman | <a href="#">Contact Us</a></p>
-    </footer>
-</body>
+    
 </html>
