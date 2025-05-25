@@ -1,6 +1,7 @@
 from django.db import IntegrityError
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import Booking, Caddie, EndUsers, Field, Assignment, PlayerScore, schedule
+from django.contrib.auth.decorators import login_required
 
 def landing_page(request):
     playerscores = PlayerScore.objects.all()
@@ -66,4 +67,10 @@ def assign_timeslot(request, timeslot_id):
     return render(request, "core/assign.html", {
         "timeslot": timeslot,
         "users": users,
+    })
+
+@login_required
+def dashboard(request):
+    return render(request, 'core/dashboard.html', {
+        'user': request.user
     })
