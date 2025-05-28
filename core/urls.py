@@ -13,4 +13,5 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('dashboard/', views.dashboard, name= 'dashboard'),
+    path('basic_encrypt1/', views.dashboard, name= 'basic_encrypt1'),
 ]

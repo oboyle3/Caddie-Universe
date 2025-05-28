@@ -74,3 +74,10 @@ def dashboard(request):
     return render(request, 'core/dashboard.html', {
         'user': request.user
     })
+
+
+def basic_encrypt1(request):
+    
+    return render(request, "core/basic_encrypt1.html", {
+         # This makes it available in the template
+    })
